@@ -22,6 +22,11 @@ async function main() {
       native: country.native,
     };
   });
+  try {
+    await fs.rm("dist", { recursive: true });
+  } catch (err) {
+    console.log("No dist folder found, proceeding...");
+  }
   await fs.mkdir("dist");
   await fs.writeFile("dist/countries.json", stringify(countries));
 
